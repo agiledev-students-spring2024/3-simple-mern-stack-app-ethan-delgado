@@ -12,6 +12,20 @@ const listener = server.listen(port, function () {
   console.log(`Server running on port: ${port}`)
 })
 
+
+const express = require('express');
+const app = express();
+const path = require('path');
+
+// Serve static files from the 'public' directory
+app.use(express.static(path.join(__dirname, 'public')));
+
+
+// routing to aboutUs
+const aboutUsRoute = require('./models/aboutUs'); // Adjust the path as necessary
+app.use('/api', aboutUsRoute);
+
+
 // a function to stop listening to the port
 const close = () => {
   listener.close()
